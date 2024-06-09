@@ -7,218 +7,47 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Installazione Laravel
 
-```bash
-cd your parent_folder_path
+# Nome progetto
+[Vai all'indice](#indice)
 
-#con laravel installer
-laravel new your_project_name_here
+## Indice
+- [Descrizione](#descrizione)
+- [Interfaccia amministrativa](#interfaccia_amministrativa) 
+    - [Struttura database](#Struttura_database)
+- [Interfaccia utente](#interfaccia_utente)
+- [Tecnologie utilizzate](#tecnologie)
+- [Installazione](#installazione)
+- [Collaboratori](#collaboratori)
+- 
 
-#per versione 9
-composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
+### Descrizione
+Applicazione per la gestione delle proiezioni del Cinema X. L'interfaccia amministrativa include funzionalità per l’organizzazione della programmazione dei film e la vendita dei biglietti.
 
-cd your_project_name_here
+L'interfaccia utente consente di:
+- visualizzare una lista dei film proiettati nella settimana corrente,
+- selezionare il singolo film con le informazioni relative (orari di proiezione, prezzo del biglietto, recensioni).
 
-code . -r
+Lingua: italiano.
 
-php artisan serve
+### Interfaccia amministrativa
+Si accede all'interfaccia amministrativa tramite percorso: e inserendo le proprie credenziali di accesso.
 
-ctrl + c
+#### Struttura Database
 
-```
-## Configurazione Laravel
-```bash
-npm remove postcss
+### Tecnologie utilizzate
 
-#installo dbal per migration e seeder
-composer require doctrine/dbal
+- Laravel
+- Vue
+- Bootstrap
+- 
 
-composer require guzzlehttp/guzzle
-
-composer require laravel/breeze --dev
-php artisan breeze:install #blade
-
-
-composer require pacificdev/laravel_9_preset
-
-#solo per versione 9
-php artisan preset:ui bootstrap --auth
-
-npm install bootstrap axios @fortawesome/fontawesome-free sass
-
-#in vite config aggiungo agli alias
-'~@fortawesome': path.resolve(__dirname, 'node_modules/@fortawesome'),
-
-#copio la cartella dei webfont e se voglio la rinomino e la copio nella cartella font
-
-#app.js
-import "./bootstrap";
-import "~resources/scss/app.scss";
-import * as bootstrap from "bootstrap";
-import.meta.glob(["../img/**", "../fonts/**"]);
-
-#app.scss
-@use './partials/variables' as *;
-
-$fa-font-path: "../fonts/webfonts" !default;
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-@import '~bootstrap/scss/bootstrap';
-
-h1 {
-    color: $text-color;
-}
-
-#vite.config.js
-import { defineConfig } from "vite";
-import laravel from "laravel-vite-plugin";
-import * as path from "path";
-
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ["resources/scss/app.scss", "resources/js/app.js"],
-            refresh: true,
-        }),
-    ],
-    // Add resolve object and aliases
-    resolve: {
-        alias: {
-            "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
-            "~@fortawesome": path.resolve(
-                __dirname,
-                "node_modules/@fortawesome"
-            ),
-            "~resources": "/resources/",
-        },
-    },
-});
-
-#sistemo (cambio/rimuovo) template e routing
-
-#volendo personalizzo paginazione e pagine di errore
-php artisan vendor:publish --tag=laravel-errors
-php artisan vendor:publish --tag=laravel-pagination
-
-#comandi git
-
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin your_git_url 
-git push -u origin main
+### Collaboratori
 
 
-```
-## Clono progetto da github 
-
-```bash
-# copio file .env.example e lo rinomino in .env
-
-composer install
-
-php artisan key:generate
-
-npm install
-
-# creo il database da phpmyadmin
-
-# inserisco i dati per il collegamento al db in env
-
-#creo migration
-php artisan make:migration create_nome_tabella_table
-php artisan make:migration update_users_table --table=users
-php artisan make:migration add_phone_number_to_users_table
-
-#lanciare migration
-php artisan migrate
-
-#revert migration
-php artisan migrate:rollback
 
 
-#popolare il db
-php artisan make:seeder UsersTableSeeder
-
-php artisan db:seed --class=UsersTableSeeder
-
-# preparo le rotte file web.php es. 
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-# oppure resource route per tutte le operazioni CRUD
-Route::resource('books', BookController::class);
-
-# creo controller
-php artisan make:controller NomeController
-#con opzione resource controller
-php artisan make:controller NomeController --resource
 
 
-#creo model
-php artisan make:model Nome 
-#posso creare il model e contestualmente resource controller, migration, seeder e form request per validazioni
-php artisan make:model Nome -rcms --requests
-
-# creo le views relative
-
-#creo form request per validazione
-	
-php artisan make:request StoreMomemodelRequest
 
 
-```
-## Auth
-
-```bash
-#in app/Providers/RouteServiceProvider.php modifico
-public const HOME = '/admin';
-
-# Se l’utente non è autenticato, sarà dirottato automaticamente verso la pagina di login.
-# Questo comportamento è modificabile nel file in app/Http/Middleware/Authenticate.php
-
-php artisan make:controller Admin/DashboardController
-# nel controller
-public function index(){
-        return view('admin.dashboard');
-    }
-
-Route::middleware(['auth', 'verified'])
-   ->name('admin.')
-   ->prefix('admin')
-   ->group(function () {
-         Route::get('/', [DashboardController::class, 'index'])
-         ->name('dashboard');
-   });
-
-....
-
-Route::fallback(function() {
-    return redirect()->route('admin.dashboard');
-});
-
-```
-## File Storage
-```bash
-#modifico in env file system 
-es. FILESYSTEM_DISK=public
-
-#In config/filestystems.php 
-#Caricheremo i nostri file nella cartella storage/app/public
-# modifichiamo quindi 
-'default' => env('FILESYSTEM_DRIVER', 'public'),
-
-#lanciare comando
-php artisan storage:link
-
-#salvare
-Storage::put('images', $data['image']); //ritorna il path
-
-#per visualizzare 
-<img src="{{ asset('storage/' . $post->cover_image) }}">
-
-```
