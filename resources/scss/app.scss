@@ -9,6 +9,7 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 @import '~bootstrap/scss/bootstrap';
 
-h1 {
-    color: $text-color;
+
+a {
+    text-decoration: none;
 }
