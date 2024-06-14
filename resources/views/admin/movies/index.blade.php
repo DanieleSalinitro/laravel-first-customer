@@ -2,19 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Movies</h1>
-    <a href="{{ route('admin.movies.create') }}" class="btn btn-primary">Add Movie</a>
-    <table class="table">
+    <div class="d-flex justify-content-between mt-4">
+    <h1 class="">Lista film</h1>
+    <a href="{{ route('admin.movies.create') }}" class="btn btn-warning mt-4">Aggiungi un film</a>
+    </div>
+    
+    <table class="table mt-5">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Language</th>
+                <th>Titolo</th>
+                <th>Descrizione</th>
+                <th>Lingua</th>
                 <th>Cast</th>
-                <th>Director</th>
-                <th>Genre</th>
-                <th>Duration</th>
-                <th>Actions</th>
+                <th>Regista</th>
+                <th>Genere</th>
+                <th>Durata</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -26,14 +29,16 @@
                     <td>{{ $movie->cast }}</td>
                     <td>{{ $movie->director }}</td>
                     <td>{{ $movie->genre }}</td>
-                    <td>{{ $movie->duration }}</td>
+                    <td>{{ $movie->duration }} minuti</td>
                     <td>
-                        <a href="{{ route('admin.movies.show', $movie->id) }}" class="btn btn-info">View</a>
-                        <a href="{{ route('admin.movies.edit', $movie->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('admin.movies.show', $movie->id) }}" title="Show" class="text-black px-2"><i class="fa-solid fa-eye"></i> Visualizza</a>
+                        <a href="{{ route('admin.movies.edit', $movie->id) }}" title="Edit" class="text-black px-2"><i class="fa-solid fa-pen"></i> Modifica</a>
                         <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="delete-button border-0 bg-transparent"  data-item-title="{{ $movie->title }}" data-item-id = "{{ $movie->id }}">
+                        <i class="fa-solid fa-trash"></i> Rimuovi
+                      </button>
                         </form>
                     </td>
                 </tr>
