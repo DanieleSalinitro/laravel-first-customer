@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthorController;
+use App\Http\Controllers\Admin\HallController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('movies', MovieController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('authors', AuthorController::class);
+    Route::resource('halls', HallController::class);
 });
 
 
