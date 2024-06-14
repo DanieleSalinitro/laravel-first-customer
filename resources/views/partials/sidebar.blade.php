@@ -15,6 +15,11 @@
                 <i class="fa-solid fa-comments fa-lg fa-fw"></i> Reviews
             </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.authors.index' ? 'active' : '' }}" href="{{ route('admin.authors.index') }}">
+              <i class="fa-solid fa-user fa-lg fa-fw"></i> Authors
+          </a>
+      </li>
 
       </ul>
     </nav>
