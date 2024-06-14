@@ -9,6 +9,12 @@
         <li class="nav-item">
           <a class="nav-link  text-white {{Route::currentRouteName() == 'admin.movies.index' ? 'active' : ''}}" href="{{route('admin.movies.index')}}"> <i class="fa-solid fa-film fa-lg fa-fw"></i>Film</a>
         </li>
+        <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reviews.index' ? 'active' : '' }}" href="{{ route('admin.reviews.index') }}">
+                <i class="fa-solid fa-comments fa-lg fa-fw"></i> Reviews
+            </a>
+        </li>
 
       </ul>
     </nav>
