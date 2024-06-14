@@ -11,6 +11,7 @@ class Review extends Model
 
     protected $fillable = [
         'movie_id',
+        'author_id',
         'content',
         'rating',
     ];
@@ -18,5 +19,9 @@ class Review extends Model
     public function movie()
     {
         return $this->belongsTo(Movie::class);
+    }
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
     }
 }
