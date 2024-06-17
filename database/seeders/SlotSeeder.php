@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Slot;
 
 class SlotSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class SlotSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('slots')->insert([
+        $slots= [
             [
                 'name' => 'pomeriggio',
                 'start_time' => '17:00',
@@ -30,7 +31,14 @@ class SlotSeeder extends Seeder
                 'end_time' => '23:00',
             ],
        
-            ]);
+            ];
+            foreach ($slots as $slot) {
+                $newSlot = new Slot();
+                $newSlot->name = $slot['name'];
+                $newSlot->start_time = $slot['start_time'];
+                $newSlot->end_time = $slot['end_time'];
+                $newSlot->save();
+            }
         }
     }
 

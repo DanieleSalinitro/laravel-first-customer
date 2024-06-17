@@ -11,7 +11,7 @@ class Review extends Model
 
     protected $fillable = [
         'movie_id',
-        'author_id',
+        'author',
         'content',
         'rating',
     ];
