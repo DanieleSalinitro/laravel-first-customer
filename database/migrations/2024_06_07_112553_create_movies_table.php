@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id(); // Campo movie id
             $table->string('title', 255); // Campo title
+            $table->string('image', 255)->nullable(); // Campo image
             $table->text('description')->nullable(); // Campo description
             $table->string('language', 100); // Campo language
             $table->string('cast', 255); // Campo cast

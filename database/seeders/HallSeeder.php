@@ -4,12 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Hall;
 
 class HallSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('halls')->insert([
+        $halls=[
             [
                 'name' => 'Blu',
                 'seats' => 100,
@@ -42,6 +43,14 @@ class HallSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+        foreach ($halls as $hall) {
+            $newHall = new Hall();
+            $newHall->name = $hall['name'];
+            $newHall->seats = $hall['seats'];
+            $newHall->isense = $hall['isense'];
+            $newHall->base_price = $hall['base_price'];
+            $newHall->save();
+        }
     }
 }
