@@ -12,7 +12,7 @@ class CreateHallsTable extends Migration
             $table->string('name');
             $table->integer('seats');
             $table->boolean('isense');
-            $table->decimal('base_price', 4, 2);
+            $table->decimal('price', 4, 2);
             $table->timestamps();
         });
     }

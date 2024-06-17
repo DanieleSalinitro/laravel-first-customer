@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Hall;
 class Movie extends Model
 {
     use HasFactory;
@@ -18,5 +18,7 @@ class Movie extends Model
         'genre',
         'duration',
     ];
-
+    public function halls(){
+        return $this->belongsToMany(Hall::class)->using(HallMovie::class);
+    }
 }
