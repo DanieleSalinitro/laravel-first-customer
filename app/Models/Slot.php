@@ -14,4 +14,8 @@ class Slot extends Model
         'start_time',
         'end_time',
     ];
+    public function hallMovies()
+    {
+        return $this->hasMany(HallMovie::class);
+    }
 }

@@ -11,6 +11,11 @@ class HallMovie extends Pivot
     use HasFactory;
 
     protected $fillable = [
-        'date',
+        'date', 
+        'slot_id'
     ];
+    public function slot()
+    {
+        return $this->belongsTo(Slot::class);
+    }
 }
