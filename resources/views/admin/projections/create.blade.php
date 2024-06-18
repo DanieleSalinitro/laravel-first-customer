@@ -28,8 +28,19 @@
                 @enderror
             </div>
             <div>
-                <label for="start_time">Data e Ora di Inizio (YYYY-MM-DD HH:MM:SS):</label>
-                <input type="text" name="start_time" id="start_time" value="{{ old('start_time') }}">
+                <label for="date">Data(YYYY-MM-DD):</label>
+                <input type="text" name="date" id="start_date" value="{{ old('date') }}">
+                @error('date')
+                    <div>{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="start_time">Ora di Inizio:</label>
+                <select name="start_time" id="start_time">
+                    @foreach($slots as $slot)
+                        <option value="{{ $slot }}">{{ $slot }}</option>
+                    @endforeach
+                </select>
                 @error('start_time')
                     <div>{{ $message }}</div>
                 @enderror

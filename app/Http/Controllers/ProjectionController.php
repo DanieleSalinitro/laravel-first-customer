@@ -7,6 +7,7 @@ use App\Models\Projection;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\HallMovie;
+use App\Models\Slot;
 
 class ProjectionController extends Controller
 {
@@ -28,7 +29,8 @@ class ProjectionController extends Controller
     {
         $halls = Hall::all();
         $movies = Movie::all();
-        return view('admin.projections.create', compact('halls', 'movies','slot'));
+        $slots = Slot::all();
+        return view('admin.projections.create', compact('halls', 'movies','slots'));
     }
 
     public function store(Request $request)
