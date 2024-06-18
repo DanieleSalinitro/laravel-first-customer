@@ -82,8 +82,8 @@ class ProjectionController extends Controller
             ->with('success', 'Projection deleted successfully.');
     }
 
-    public static function checkSlot(){
-        $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
+    public function checkSlot(){
+        return $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
         ->where('date', $request->date)
         ->where('hall_id', $request->hall_id)
         ->first();
