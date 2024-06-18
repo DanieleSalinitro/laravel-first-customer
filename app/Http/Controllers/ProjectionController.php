@@ -31,7 +31,7 @@ class ProjectionController extends Controller
             'start_time' => 'required|date_format:Y-m-d H:i:s',
         ]);
        
-        if(checkSlot()){
+        if(checkSlot($request)){
             return redirect()->route('admin.projections.create')
             ->withErrors(['error' => 'Si è verificato un errore durante la modifica della proiezione.']);
         }
@@ -63,7 +63,7 @@ class ProjectionController extends Controller
         ]);
 
         $projection = HallMovie::findOrFail($id);
-        if(checkSlot()){
+        if(checkSlot($request)){
             return redirect()->route('admin.projections.edit')
             ->withErrors(['error' => 'Si è verificato un errore durante la modifica della proiezione.']);
         }
@@ -83,7 +83,7 @@ class ProjectionController extends Controller
             ->with('success', 'Projection deleted successfully.');
     }
 
-    public function checkSlot(){
+    public function checkSlot($request){
         return $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
         ->where('date', $request->date)
         ->where('hall_id', $request->hall_id)
