@@ -38,7 +38,6 @@ class ProjectionController extends Controller
         $request->validate([
             'hall_id' => 'required|integer|exists:halls,id',
             'movie_id' => 'required|integer|exists:movies,id',
-            'start_time' => 'required|date_format:Y-m-d H:i:s',
         ]);
 
         if ($this->checkSlot($request)) {
