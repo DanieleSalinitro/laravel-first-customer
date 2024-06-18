@@ -28,7 +28,7 @@ class ProjectionController extends Controller
     {
         $halls = Hall::all();
         $movies = Movie::all();
-        return view('admin.projections.create', compact('halls', 'movies'));
+        return view('admin.projections.create', compact('halls', 'movies','slot'));
     }
 
     public function store(Request $request)

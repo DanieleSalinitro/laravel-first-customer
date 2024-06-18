@@ -5,27 +5,36 @@
         <h1>Create Projection</h1>
         <form action="{{ route('admin.projections.store') }}" method="POST">
             @csrf
-            <div class="form-group">
-                <label for="hall_id">Hall</label>
-                <select class="form-control" id="hall_id" name="hall_id" required>
+            <div>
+                <label for="hall_id">Sala:</label>
+                <select name="hall_id" id="hall_id">
                     @foreach($halls as $hall)
                         <option value="{{ $hall->id }}">{{ $hall->name }}</option>
                     @endforeach
                 </select>
+                @error('hall_id')
+                    <div>{{ $message }}</div>
+                @enderror
             </div>
-            <div class="form-group">
-                <label for="movie_id">Movie</label>
-                <select class="form-control" id="movie_id" name="movie_id" required>
+            <div>
+                <label for="movie_id">Film:</label>
+                <select name="movie_id" id="movie_id">
                     @foreach($movies as $movie)
                         <option value="{{ $movie->id }}">{{ $movie->title }}</option>
                     @endforeach
                 </select>
+                @error('movie_id')
+                    <div>{{ $message }}</div>
+                @enderror
             </div>
-            <div class="form-group">
-                <label for="start_time">Start Time</label>
-                <input type="datetime-local" class="form-control" id="start_time" name="start_time" required>
+            <div>
+                <label for="start_time">Data e Ora di Inizio (YYYY-MM-DD HH:MM:SS):</label>
+                <input type="text" name="start_time" id="start_time" value="{{ old('start_time') }}">
+                @error('start_time')
+                    <div>{{ $message }}</div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit">Salva Proiezione</button>
         </form>
     </div>
 @endsection
