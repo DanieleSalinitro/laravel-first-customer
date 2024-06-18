@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('hall_movie', function (Blueprint $table) {
             
             $table->unsignedBigInteger('slot_id')->nullable();
+            $table->date('date')->nullable();
             $table->foreign('slot_id')->references('id')->on('slots')->onDelete('set null');
         });
     }
