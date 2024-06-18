@@ -7,11 +7,19 @@
             @csrf
             <div class="form-group">
                 <label for="hall_id">Hall ID</label>
-                <input type="text" class="form-control" id="hall_id" name="hall_id" required>
+                <select class="form-control" id="hall_id" name="hall_id" required>
+                    @foreach($halls as $hall)
+                        <option value="{{ $hall->id }}">{{ $hall->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="movie_id">Movie ID</label>
-                <input type="text" class="form-control" id="movie_id" name="movie_id" required>
+                <select class="form-control" id="movie_id" name="movie_id" required>
+                    @foreach($movies as $movie)
+                        <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="start_time">Slot Id</label>
