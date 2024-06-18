@@ -14,8 +14,8 @@
                 <input type="text" class="form-control" id="movie_id" name="movie_id" required>
             </div>
             <div class="form-group">
-                <label for="start_time">Start Time</label>
-                <input type="text" class="form-control" id="start_time" name="start_time" required>
+                <label for="start_time">Slot Id</label>
+                <input type="text" class="form-control" id="start_time" name="slot_id" required>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
