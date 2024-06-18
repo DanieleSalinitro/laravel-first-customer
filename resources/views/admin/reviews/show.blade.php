@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <h1>Review for {{ $review->movie->title }}</h1>
-    <p><strong>Content:</strong> {{ $review->content }}</p>
-    <p><strong>Rating:</strong> {{ $review->rating }}</p>
-    <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">Back to List</a>
+    <h1>Recensione del film {{ $review->movie->title }}</h1>
+    <p><strong>Recensione:</strong> {{ $review->content }}</p>
+    <p><strong>Voto:</strong> {{ $review->rating }}</p>
+    <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">Torna alla lista delle recensioni</a>
 </div>
 @endsection

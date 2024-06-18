@@ -15,11 +15,6 @@
                 <i class="fa-solid fa-comments fa-lg fa-fw"></i> Recensioni
             </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.authors.index' ? 'active' : '' }}" href="{{ route('admin.authors.index') }}">
-              <i class="fa-solid fa-user fa-lg fa-fw"></i> Autori Recensioni
-          </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.halls.index' ? 'active' : '' }}" href="{{ route('admin.halls.index') }}">
             <i class="fa-solid fa-door-open fa-lg fa-fw"></i> Sale

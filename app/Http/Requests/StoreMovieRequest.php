@@ -29,6 +29,7 @@ class StoreMovieRequest extends FormRequest
             'director' => 'required|string|max:255',
             'genre' => 'required|string|max:255',
             'duration' => 'required|integer|min:1',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

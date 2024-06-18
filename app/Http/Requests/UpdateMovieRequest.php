@@ -29,6 +29,7 @@ class UpdateMovieRequest extends FormRequest
             'director' => 'sometimes|required|string|max:255',
             'genre' => 'sometimes|required|string|max:255',
             'duration' => 'sometimes|required|integer|min:1',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
