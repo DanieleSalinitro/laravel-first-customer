@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Projection; // Import corretto
 use App\Models\Hall;
 use App\Models\Movie;
+use App\Models\HallMovie;
 
 class ProjectionController extends Controller
 {
