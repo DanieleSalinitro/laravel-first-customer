@@ -16,10 +16,12 @@ class ProjectionController extends Controller
         ]);
       }
       public function show($id){
-        $projections= HallMovie::where('id',$id);
+
+        $projections= HallMovie::where('id',$id)->with('hall','slot')->first();
         return response()->json([
             'success'=> true,
             'results'=> $projections
         ]);
       }
 }
+
