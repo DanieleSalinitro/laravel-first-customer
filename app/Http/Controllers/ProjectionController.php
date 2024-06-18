@@ -13,10 +13,12 @@ class ProjectionController extends Controller
 {
     public function checkSlot(Request $request)
     {
-        return HallMovie::where('start_time', $request->start_time)
-                        ->where('date', $request->date)
-                        ->where('hall_id', $request->hall_id)
-                        ->first();
+        return Slot::where('start_time', $request->start_time)
+        ->whereHas('hallMovies', function ($query) use ($request) {
+            $query->where('date', $request->date)
+                  ->where('hall_id', $request->hall_id);
+        })
+        ->first();
     }
 
     public function index()
