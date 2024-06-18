@@ -22,7 +22,8 @@ class HallController extends Controller
 
     public function store(StoreHallRequest $request)
     {
-        Hall::create($request->validated());
+        $newHall = Hall::create($request->validated());
+        $newHall->generatePrice($newHall);
 
         return redirect()->route('admin.halls.index')->with('success', 'Hall created successfully.');
     }
@@ -39,8 +40,10 @@ class HallController extends Controller
 
     public function update(UpdateHallRequest $request, Hall $hall)
     {
+        if(  ($hall->seats =! $request->seats) && ($hall->isense != $request->isense) ){
+            $hall->generatePrice($hall);
+        }
         $hall->update($request->validated());
-
         return redirect()->route('admin.halls.index')->with('success', 'Hall updated successfully.');
     }
 

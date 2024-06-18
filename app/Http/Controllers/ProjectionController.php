@@ -29,11 +29,16 @@ class ProjectionController extends Controller
             'movie_id' => 'required|integer|exists:movies,id',
             'start_time' => 'required|date_format:Y-m-d H:i:s',
         ]);
-
-        Projection::create($request->all());
-
-        return redirect()->route('admin.projections.index')
-            ->with('success', 'Projection created successfully.');
+       
+        if(checkSlot()){
+            return redirect()->route('admin.projections.create')
+            ->withErrors(['error' => 'Si è verificato un errore durante la modifica della proiezione.']);
+        }
+        else{
+            HallMovie::create($request->all());
+            return redirect()->route('admin.projections.index')
+                ->with('success', 'Projection created successfully.');
+        }
     }
 
     public function show($id)
@@ -56,11 +61,16 @@ class ProjectionController extends Controller
             'start_time' => 'required|date_format:Y-m-d H:i:s',
         ]);
 
-        $projection = Projection::findOrFail($id);
-        $projection->update($request->all());
-
-        return redirect()->route('admin.projections.index')
-            ->with('success', 'Projection updated successfully.');
+        $projection = HallMovie::findOrFail($id);
+        if(checkSlot()){
+            return redirect()->route('admin.projections.edit')
+            ->withErrors(['error' => 'Si è verificato un errore durante la modifica della proiezione.']);
+        }
+        else{
+            $projection->update($request->all());
+            return redirect()->route('admin.projections.index')
+                ->with('success', 'Projection updated successfully.');
+        }
     }
 
     public function destroy($id)
@@ -70,5 +80,12 @@ class ProjectionController extends Controller
 
         return redirect()->route('admin.projections.index')
             ->with('success', 'Projection deleted successfully.');
+    }
+
+    public static function checkSlot(){
+        $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
+        ->where('date', $request->date)
+        ->where('hall_id', $request->hall_id)
+        ->first();
     }
 }
