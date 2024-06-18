@@ -10,6 +10,13 @@ use App\Models\HallMovie;
 
 class ProjectionController extends Controller
 {
+    public function checkSlot(Request $request){
+        return $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
+        ->where('date', $request->date)
+        ->where('hall_id', $request->hall_id)
+        ->first();
+    }
+
     public function index()
     {
         $projections = Projection::all();
@@ -81,12 +88,5 @@ class ProjectionController extends Controller
 
         return redirect()->route('admin.projections.index')
             ->with('success', 'Projection deleted successfully.');
-    }
-
-    public function checkSlot($request){
-        return $existingProjections =  $existingMovie = HallMovie::where('start_time', $request->time)
-        ->where('date', $request->date)
-        ->where('hall_id', $request->hall_id)
-        ->first();
     }
 }
