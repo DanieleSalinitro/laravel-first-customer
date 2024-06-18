@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Projection;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\HallMovie;
