@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.logo')
 
 @section('content')
 <div class="container mt-4">
