@@ -17,6 +17,7 @@ class Movie extends Model
         'director',
         'genre',
         'duration',
+        'image',
     ];
     public function halls(){
         return $this->belongsToMany(Hall::class)->using(HallMovie::class);
