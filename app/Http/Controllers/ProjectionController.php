@@ -12,7 +12,8 @@ class ProjectionController extends Controller
      */
     public function index()
     {
-        //
+        $projections = HallMovie::all();
+        return view('admin.projections.index', compact('projections'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ProjectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projections.create');
     }
 
     /**
@@ -28,38 +29,63 @@ class ProjectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hall_id' => 'required|integer',
+            'movie_id' => 'required|integer',
+            'start_time' => 'required|date_format:Y-m-d H:i:s',
+        ]);
+
+        HallMovie::create($request->all());
+
+        return redirect()->route('admin.projections.index')
+            ->with('success', 'Projection created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $projection = HallMovie::findOrFail($id);
+        return view('admin.projections.show', compact('projection'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $projection = HallMovie::findOrFail($id);
+        return view('admin.projections.edit', compact('projection'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'hall_id' => 'required|integer',
+            'movie_id' => 'required|integer',
+            'start_time' => 'required|date_format:Y-m-d H:i:s',
+        ]);
+
+        $projection = HallMovie::findOrFail($id);
+        $projection->update($request->all());
+
+        return redirect()->route('admin.projections.index')
+            ->with('success', 'Projection updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $projection = HallMovie::findOrFail($id);
+        $projection->delete();
+
+        return redirect()->route('admin.projections.index')
+            ->with('success', 'Projection deleted successfully.');
     }
 }
