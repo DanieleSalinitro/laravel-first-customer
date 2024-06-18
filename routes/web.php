@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthorController;
 use App\Http\Controllers\Admin\HallController;
+use App\Http\Controllers\ProjectionController;
 
 
 /*
@@ -32,6 +33,9 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('halls', HallController::class);
 });
 
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('projections', ProjectionController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
