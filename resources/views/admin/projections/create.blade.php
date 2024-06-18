@@ -38,7 +38,7 @@
                 <label for="start_time">Ora di Inizio:</label>
                 <select name="start_time" id="start_time">
                     @foreach($slots as $slot)
-                        <option value="{{ $slot }}">{{ $slot }}</option>
+                        <option value="{{ $slot->start_time }}">{{ $slot->start_time }}</option>
                     @endforeach
                 </select>
                 @error('start_time')
